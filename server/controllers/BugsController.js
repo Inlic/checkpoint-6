@@ -26,7 +26,7 @@ export class BugsController extends BaseController {
   }
   async getById(req, res, next){
     try {
-      let data = await bugService.getById(req.params.id, req.userInfo.email);
+      let data = await bugService.getById(req.params.id);
       return res.send(data);
     } catch (error) {
       next(error)

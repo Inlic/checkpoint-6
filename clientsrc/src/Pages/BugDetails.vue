@@ -13,14 +13,14 @@
             class="form-control"
             placeholder="New Bug Title..."
             aria-describedby="helpId"
-            v-model="blogData.title"
+            v-model="bugData.title"
           />
           <input
             type="text"
             class="form-control"
             placeholder="New Bug Text..."
             aria-describedby="helpId"
-            v-model="blogData.body"
+            v-model="bugData.description"
           />
           <button type="submit" class="btn btn-warning">Edit Bug</button>
         </form>

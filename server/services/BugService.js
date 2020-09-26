@@ -5,9 +5,9 @@ class BugService {
   async getAll(query = {}){
     return await dbContext.Bugs.find(query).populate("creator","name picture") 
   }
-  async getById(id, userEmail){
+  async getById(id){
     // FIXME change this to be a get one for every users bugs instead of the current logged in user
-    let data = await dbContext.Bugs.findOne({ _id: id, creatorEmail: userEmail })
+    let data = await dbContext.Bugs.findOne({ _id: id})
     if(!data){
     throw new BadRequest("Invalid ID or you do not own this bug")
     }
