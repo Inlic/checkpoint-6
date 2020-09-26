@@ -34,7 +34,7 @@ export class BugsController extends BaseController {
   }
   async getNotesByBugId(req, res, next){
     try {
-      let data = await noteService.find({bugId: req.params.id})
+      let data = await noteService.find({bug: req.params.id})
       return res.send(data);
     } catch (error) {
       next(error);
@@ -51,20 +51,18 @@ export class BugsController extends BaseController {
   }
   async edit(req, res, next){
     try {
-      let data = await bugService.edit(
-        req.params.id,
-        req.userInfo.email,
-        req.body
-      );
+      let data = await bugService.edit(req.params.id,req.userInfo.email,req.body);
       return res.send(data);
     } catch (error) {
       next(error)
     }
   }
+
+  //FIXME delete needs to close, but not delete the bug
   async delete(req,res,next){
     try {
-      await bugService.delete(req.params.id, req.userInfo.email);
-      return res.send("Successfully deleted");
+      let data = await bugService.delete(req.params.id, req.userInfo.email);
+      return res.send("Bug Closed");
     } catch (error) {
       next(error)
     }
