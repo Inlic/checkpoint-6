@@ -74,6 +74,22 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
+    async editActiveBug({commit},bug){
+      try {
+        let res = await api.put('bugs/'+bug.id, bug)
+        commit("setActiveBug", res.data)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async closeBug({commit},bugId){
+      try {
+        let res = await api.delete('bugs/'+bugId)
+        commit("setActiveBug", res.data)
+      } catch (error) {
+        console.error(error)
+      }
+    },
     
     // Note Actions
     async getActiveBugNotes({commit},bugId){

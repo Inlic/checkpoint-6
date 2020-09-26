@@ -5,6 +5,8 @@
         <h3 class="text-primary">{{bug.title}}</h3>
         <h6 class="text-warning">Created By: {{bug.creatorEmail}}</h6>
         <p>{{bug.description}}</p>
+        <h1 class="text-info">Bug Closed: {{bug.closed}}</h1>
+        <h1 v-if="bug.closedDate">Closed on: {{new Date(bug.closedDate).toLocaleDateString('en-US')}}</h1>
         <div v-if="isCreator" class="col-12">
         <i class="fa fa-pencil-alt" aria-hidden="true"></i>
           <form class="form-inline" @submit.prevent="editActiveBug">
@@ -69,15 +71,13 @@ export default {
     this.$store.dispatch("getActiveBugNotes", this.$route.params.id);
   },
   methods: {
-    //TODO needs a function
     closeBug(){
       this.bugData.id = this.bug.id
       this.$store.dispatch("closeBug", this.bugData.id)
     },
-    //TODO needs a function
     editActiveBug(){
       this.bugData.id = this.bug.id
-      this.$store.dipsatch("editActiveBug", this.bugData)
+      this.$store.dispatch("editActiveBug", this.bugData)
     },
     //TODO needs a function
     createNote(){
