@@ -26,7 +26,7 @@ class BugService {
   }
   async delete(id, userEmail){
     //FIXME not a true delete, seems to work
-    let data = await dbContext.Bugs.findOneAndUpdate({_id: id, creatorEmail: userEmail},{closed:true},{new: true});
+    let data = await dbContext.Bugs.findOneAndUpdate({_id: id, creatorEmail: userEmail},{closed:true, closedDate: new Date(Date.now()).toLocaleString() },{new: true});
     if(!data){
       throw new BadRequest("Invalid ID or you do not own this note");
     }
