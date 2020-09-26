@@ -65,17 +65,21 @@ export default {
   },
   mounted(){
     this.$store.dispatch("getActiveBug", this.$route.params.id);
+    //TODO needs a function
     this.$store.dispatch("getActiveBugNotes", this.$route.params.id);
   },
   methods: {
+    //TODO needs a function
     closeBug(){
       this.bugData.id = this.bug.id
       this.$store.dispatch("closeBug", this.bugData.id)
     },
+    //TODO needs a function
     editActiveBug(){
       this.bugData.id = this.bug.id
       this.$store.dipsatch("editActiveBug", this.bugData)
     },
+    //TODO needs a function
     createNote(){
       let payload = {
         body: this.newNote.body,
