@@ -7,8 +7,8 @@ export class BugsController extends BaseController {
   constructor(){
     super("api/bugs");
     this.router
-      .use(auth0provider.getAuthorizedUserInfo)
       .get("", this.getAll)
+      .use(auth0provider.getAuthorizedUserInfo)
       .get("/:id", this.getById)
       .get("/:id/notes",this.getNotesByBugId)
       .post("", this.create)
@@ -18,7 +18,7 @@ export class BugsController extends BaseController {
 
   async getAll(req, res, next){
     try{
-    let data = await bugService.getAll(req.userInfo.email);
+    let data = await bugService.getAll(req.query);
     return res.send(data);
     } catch (err) {
       next(err);

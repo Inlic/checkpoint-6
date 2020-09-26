@@ -2,9 +2,9 @@ import { dbContext } from "../db/DbContext"
 import { BadRequest } from "../utils/Errors"
 
 class BugService {
-  async getAll(userEmail){
+  async getAll(query = {}){
     // FIXME change this to be a get all for every users bugs instead of the current logged in user
-    return await dbContext.Bugs.find({ creatorEmail: userEmail }).populate("creator","name picture") 
+    return await dbContext.Bugs.find(query).populate("creator","name picture") 
   }
   async getById(id, userEmail){
     // FIXME change this to be a get one for every users bugs instead of the current logged in user
