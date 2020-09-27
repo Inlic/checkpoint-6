@@ -7,7 +7,7 @@
         <p>{{bug.description}}</p>
         <h1 class="text-info">Bug Closed: {{bug.closed}}</h1>
         <h1 v-if="bug.closedDate">Closed on: {{new Date(bug.closedDate).toLocaleDateString('en-US')}}</h1>
-        <div v-if="isCreator" class="col-12">
+        <div v-if="isCreator && bug.closed == false" class="col-12">
         <i class="fa fa-pencil-alt" aria-hidden="true"></i>
           <form class="form-inline" @submit.prevent="editActiveBug">
           <input
@@ -27,7 +27,7 @@
           <button type="submit" class="btn btn-warning">Edit Bug</button>
         </form>
         </div>
-        <div class="col-12 mt-2" v-if="isCreator">
+        <div class="col-12 mt-2" v-if="isCreator && bug.closed == false">
         <button class="btn btn-danger"  @click="closeBug">Close Bug</button>
         </div>
         <div v-if="profile.email" class="col-12">
