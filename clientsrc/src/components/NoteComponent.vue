@@ -3,7 +3,7 @@
       <h5 class="card-title mt-2 text-dark"><span class="text-warning">{{noteProp.creatorEmail}}</span> - {{noteProp.content}} - <span class="text-danger">{{noteProp.flagged}}</span></h5>
     <div class="card-body" v-if="isCreator">
       <i class="fa fa-pencil-alt" aria-hidden="true"></i>
-        <form class="form-inline" @submit.prevent="editComment">
+        <form class="form-inline" @submit.prevent="editNote">
           <input
             type="text"
             class="form-control"
@@ -30,11 +30,9 @@ export default {
     }
   },
   methods:{
-    //TODO needs to be created
     deleteNote(){
       this.$store.dispatch("deleteNote", this.noteProp.id)
     },
-    //TODO needs to be created
     editNote(){
       this.noteData.id = this.noteProp.id
       this.$store.dispatch("editActiveNotes", this.noteData);

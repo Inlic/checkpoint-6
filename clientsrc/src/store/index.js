@@ -26,12 +26,13 @@ export default new Vuex.Store({
     setActiveBug(state, bug){
       state.activebug = bug
     },
+    //Note Mutations
     setActiveBugNotes(state, notes){
       state.activenotes = notes;
+    },
+    removeNote(state,id){
+      state.activenotes = state.activenotes.filter(n => n.id != id)
     }
-
-
-    //Note Mutations
   },
   actions: {
     // AUTH Actions
@@ -43,7 +44,7 @@ export default new Vuex.Store({
     },
     async getProfile({ commit }) {
       try {
-        let res = await api.get("profile");
+        let res = await api.get('profile');
         commit("setProfile", res.data);
       } catch (error) {
         console.error(error);
@@ -52,7 +53,7 @@ export default new Vuex.Store({
     // Bug Actions
     async getBugs({commit}){
       try {
-        let res = await api.get("bugs");
+        let res = await api.get('bugs');
         commit("setBugs", res.data)
       } catch (error) {
         console.error(error)
@@ -60,7 +61,7 @@ export default new Vuex.Store({
     },
     async addBug({commit, state}, bugData){
       try {
-        let res = await api.post("bugs", bugData)
+        let res = await api.post('bugs', bugData)
         commit("setBugs",[...state.bugs,res.data])
       } catch (error) {
         console.error(error)
@@ -68,7 +69,7 @@ export default new Vuex.Store({
     },
     async getActiveBug({commit},bugId){
       try {
-        let res = await api.get("bugs/"+bugId)
+        let res = await api.get('bugs/'+bugId)
         commit("setActiveBug", res.data)
       } catch (error) {
         console.error(error)
@@ -94,8 +95,34 @@ export default new Vuex.Store({
     // Note Actions
     async getActiveBugNotes({commit},bugId){
       try {
-        let res = await api.get("bugs/"+bugId+"/notes")
+        let res = await api.get('bugs/'+bugId+'/notes')
         commit("setActiveBugNotes",res.data)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async createNote({commit, state},note){
+      try{
+        let res = await api.post('notes',note)
+        commit("setActiveBugNotes",[...state.activenotes,res.data])
+      } catch(error){
+        console.error(error)
+      }
+    },
+    async editActiveNotes({commit, state}, note){
+      try {
+        let res = await api.put('notes/'+note.id, note)
+        let noteIndex = state.activenotes.findIndex(n => n.id == note.id)
+        state.activenotes.splice(noteIndex,1,res.data)
+        commit("setActiveBugNotes", state.activenotes)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async deleteNote({commit},noteId){
+      try {
+        await api.delete('notes/'+noteId)
+        commit("removeNote",noteId)
       } catch (error) {
         console.error(error)
       }

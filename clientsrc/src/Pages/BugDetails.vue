@@ -67,7 +67,6 @@ export default {
   },
   mounted(){
     this.$store.dispatch("getActiveBug", this.$route.params.id);
-    //TODO needs a function
     this.$store.dispatch("getActiveBugNotes", this.$route.params.id);
   },
   methods: {
@@ -79,13 +78,14 @@ export default {
       this.bugData.id = this.bug.id
       this.$store.dispatch("editActiveBug", this.bugData)
     },
-    //TODO needs a function
     createNote(){
       let payload = {
-        body: this.newNote.body,
+        //TODO flagged attribute needs to be in the post
+        content: this.newNote.content,
         bug: this.$route.params.id,
         creatorEmail: this.profile.email
       }
+      this.$store.dispatch("createNote",payload)
     }
   },
   computed: {
