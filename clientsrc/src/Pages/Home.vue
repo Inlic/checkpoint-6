@@ -17,8 +17,8 @@
         <tr>
           <th scope="col">Bug Report Title</th>
           <th scope="col">Creator</th>
-          <th scope="col" class="text-center">Status <i class="fas fa-eye-slash" @click="hideClosed"></i></th>
-          <th scope="col" class="text-center">Last Modified Date</th>
+          <th scope="col" class="text-center">Status <i :class="{'fas': fillEye, 'far': !fillEye}" class='fa-eye-slash' @click="hideClosed"></i></th>
+          <th scope="col" class="text-center">Last Modified Date <i class="fas fa-sort" @click="dateSort"></i></th>
         </tr>
         <tbody>
         <tr v-for="bug in bugs" :key="bug.id" v-show="bug.closed !== closed">
@@ -45,7 +45,9 @@ export default {
         description: "",
         title: ""
       },
-      closed: ""
+      closed: "",
+      fillEye: true,
+      sort: false
     };
   },
   computed: {
@@ -64,8 +66,24 @@ export default {
     hideClosed(){
       if(this.closed === ""){
         this.closed = true
+        this.fillEye = false
       } else{
         this.closed = ""
+        this.fillEye = true
+      }
+    },
+    dateSort(){
+      if(this.sort === false){
+        this.bugs.sort((a,b) => {
+        let da = new Date(a.updatedAt), db = new Date(b.updatedAt)
+        this.sort = true
+        return da - db;
+      })} else {
+        this.bugs.sort((a,b) => {
+        let da = new Date(a.updatedAt), db = new Date(b.updatedAt)
+        this.sort = false
+        return db - da
+        })
       }
     }
   }
@@ -77,7 +95,7 @@ table, th, td{
   border: 1px solid var(--success)
 }
 
-.fas {
+.fas, .far {
   cursor: pointer;
 }
 

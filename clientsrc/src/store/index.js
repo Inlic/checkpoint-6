@@ -92,7 +92,6 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
-    
     // Note Actions
     async getActiveBugNotes({commit},bugId){
       try {
