@@ -76,6 +76,7 @@ export default {
     },
     editActiveBug(){
       this.bugData.id = this.bug.id
+      this.bugData.closed = this.bug.closed
       this.$store.dispatch("editActiveBug", this.bugData)
     },
     createNote(){

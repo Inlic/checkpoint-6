@@ -18,7 +18,13 @@ class BugService {
     return data
   }
   async edit(id, userEmail, update){
+    let checkdata = await dbContext.Bugs.findOne({ _id: id})
+    // @ts-ignore
+    if(checkdata.closed) {
+      throw new BadRequest("Bug is closed");
+    }
     let data = await dbContext.Bugs.findOneAndUpdate({_id: id, creatorEmail: userEmail}, update, {new: true});
+    // @ts-ignore
     if(!data){
       throw new BadRequest("Invalid ID or you do not own this bug");
     }
