@@ -1,10 +1,10 @@
 <template>
   <div class="container-fluid d-flex flex-column justify-content-center">
     <div class="row">
-      <h1 class="card offset-1 col-10 text-dark border-success m-2 pb-1">Reported Bugs</h1>
+      <h1 class="card offset-1 col-10 text-dark border-success my-2 pb-1">Reported Bugs</h1>
     </div>
     <div class="row">
-      <div v-if="profile.email" class="card offset-1 col-10 my-2 p-1 border-success">
+      <div v-if="profile.email" class="card offset-1 col-10 mt-2 p-1 border-success">
       <form class="form-inline" @submit.prevent="addBug">
         <input class="form-control mx-2" type="text" placeholder="New Bug Title" v-model="newBug.title" required />
         <input class="form-control mx-2" type="text" placeholder="New Bug Description" v-model="newBug.description" />
