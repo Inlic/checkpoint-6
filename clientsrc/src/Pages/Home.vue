@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid d-flex flex-column justify-content-center">
     <div class="row">
-      <h1 class="card offset-1 col-10 text-dark border-success mt-2 pb-1">Reported Bugs</h1>
+      <h1 class="card offset-1 col-10 text-dark border-success m-2 pb-1">Reported Bugs</h1>
     </div>
     <div class="row">
       <div v-if="profile.email" class="card offset-1 col-10 my-2 p-1 border-success">

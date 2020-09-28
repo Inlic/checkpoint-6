@@ -1,8 +1,13 @@
 <template>
   <li class="post-component col-12 border list-group-item">
-      <h5 class="card-title mt-2 text-dark"><span class="text-warning">{{noteProp.creatorEmail}}</span> - {{noteProp.content}} - <span class="text-danger">{{noteProp.flagged}}</span></h5>
-    <div class="card-body" v-if="isCreator">
-      <i class="fa fa-pencil-alt" aria-hidden="true"></i>
+      <h5 class="card-title mt-2 text-dark">
+      <span class="text-warning">{{noteProp.creatorEmail}}</span>
+      <p>{{noteProp.content}}</p>
+      <span class="text-danger">Status: {{noteProp.flagged}}</span>
+      </h5>
+    <div class="offset-3 col-6 card p-3" v-if="isCreator">
+      <i class="fa fa-pencil-alt mb-2" aria-hidden="true" @click="noteToggle = !noteToggle"> Click to Edit Note Content</i>
+      <div v-if="noteToggle">
         <form class="form-inline" @submit.prevent="editNote">
           <input
             type="text"
@@ -18,10 +23,11 @@
           </select>
           <button type="submit" class="btn btn-warning">Edit Note</button>
         </form>
+        </div>
+    </div>
       <div class="mt-3">
         <button class="btn btn-danger" @click="deleteNote">Delete Note</button>
       </div>
-    </div>
   </li>
 </template>
 
@@ -31,8 +37,8 @@ export default {
   props: ["noteProp"],
   data(){
     return {
-      noteData: {
-      }
+      noteData: {},
+      noteToggle: false
     }
   },
   methods:{
