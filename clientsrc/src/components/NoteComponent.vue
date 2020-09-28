@@ -3,7 +3,7 @@
       <h5 class="card-title text-dark">
       <span class="text-warning">User: {{noteProp.creatorEmail}}</span>
       </h5>
-      <span class="text-danger">Note Status: {{noteProp.flagged}}</span>
+      <span>Note Status: <span class="text-danger">{{noteProp.flagged}}</span></span>
       <div class="card-body">
       <p>{{noteProp.content}}</p>
       </div>
