@@ -8,23 +8,23 @@
       <p>{{noteProp.content}}</p>
       </div>
     <div v-if="isCreator">
-    <div class="offset-3 col-6 p-3">
+    <div class="offset-lg-3 col-12 col-lg-6 p-3">
       <i class="fa fa-pencil-alt mb-1" aria-hidden="true" @click="noteToggle = !noteToggle"> Click to Edit Note Content</i>
       <div v-if="noteToggle">
-        <form class="form-inline" @submit.prevent="editNote">
+        <form class="form-inline row" @submit.prevent="editNote">
           <input
             type="text"
-            class="form-control mx-2"
+            class="form-control col-12"
             placeholder="Comment Text..."
             aria-describedby="helpId"
             v-model="noteData.content"
           />
-          <select class="form-control mx-2" v-model="noteData.flagged">
+          <select class="form-control col-12" v-model="noteData.flagged">
             <option>pending</option>
             <option>completed</option>
             <option>rejected</option>
           </select>
-          <button type="submit" class="btn btn-warning">Edit Note</button>
+          <button type="submit" class="btn btn-warning col-12">Edit Note</button>
         </form>
         </div>
     </div>

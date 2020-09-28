@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="row card-body">
-      <table class="table table-striped offset-1 col-10">
+      <table class="table table-striped offset-lg-1 col-12 col-lg-10">
         <tr>
           <th scope="col">Bug Report Title</th>
           <th scope="col">Creator</th>

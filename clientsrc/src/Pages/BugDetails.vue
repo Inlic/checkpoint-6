@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12 card">
         <h1 class="text-primary">{{bug.title}}</h1>
-        <div class="offset-4 col-4 card mb-2">
+        <div class="offset-lg-4 col-12 col-lg-4 card mb-2">
         <h2>Bug Status:  <span :class="{'text-warning': bug.closed, 'text-danger': !bug.closed}">{{bug.closed ? "Closed" : "Open"}}</span></h2>
         <h2 v-if="bug.closedDate">Closed on: {{new Date(bug.closedDate).toLocaleDateString('en-US')}}</h2>
         </div>
@@ -11,25 +11,25 @@
         <div class="col-12 card-body">
         <p>{{bug.description}}</p>
         </div>
-        <div v-if="isCreator && bug.closed == false" class="offset-3 col-6 p-2">
+        <div v-if="isCreator && bug.closed == false" class="offset-lg-3 col-12 col-lg-6 p-2">
         <i class="fa fa-pencil-alt mb-1" aria-hidden="true" @click="editToggle = !editToggle"> Click to Edit Bug Content</i>
         <div v-if="editToggle">
-          <form class="form-inline" @submit.prevent="editActiveBug">
+          <form class="form-inline row" @submit.prevent="editActiveBug">
           <input
             type="text"
-            class="form-control mx-2"
+            class="form-control col-12"
             placeholder="New Bug Title..."
             aria-describedby="helpId"
             v-model="bugData.title"
           />
           <input
             type="text"
-            class="form-control mx-2"
+            class="form-control col-12"
             placeholder="New Bug Text..."
             aria-describedby="helpId"
             v-model="bugData.description"
           />
-          <button type="submit" class="btn btn-warning">Edit Bug</button>
+          <button type="submit" class="btn btn-warning col-12">Edit Bug</button>
         </form>
         </div>
         </div>
