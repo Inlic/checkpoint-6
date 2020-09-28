@@ -17,11 +17,11 @@
         <tr>
           <th scope="col">Bug Report Title</th>
           <th scope="col">Creator</th>
-          <th scope="col" class="text-center">Status</th>
+          <th scope="col" class="text-center">Status <i class="fas fa-eye-slash" @click="hideClosed"></i></th>
           <th scope="col" class="text-center">Last Modified Date</th>
         </tr>
         <tbody>
-        <tr v-for="bug in bugs" :key="bug.id">
+        <tr v-for="bug in bugs" :key="bug.id" v-show="bug.closed !== closed">
           <td><h4><router-link class="text-primary" :to="{name: 'bug-details', params: {id: bug.id}}">{{bug.title}}</router-link></h4></td>
           <td><h5>{{bug.creatorEmail}}</h5></td>
           <td class="text-center"><h5><span class="text-warning" v-if="bug.closed">Closed</span><span class="text-danger" v-else>Open</span></h5></td>
@@ -45,6 +45,7 @@ export default {
         description: "",
         title: ""
       },
+      closed: ""
     };
   },
   computed: {
@@ -60,6 +61,13 @@ export default {
       this.$store.dispatch("addBug", this.newBug);
       this.newBug = { title: "", description: ""};
     },
+    hideClosed(){
+      if(this.closed === ""){
+        this.closed = true
+      } else{
+        this.closed = ""
+      }
+    }
   }
 };
 </script>
@@ -67,6 +75,10 @@ export default {
 <style>
 table, th, td{
   border: 1px solid var(--success)
+}
+
+.fas {
+  cursor: pointer;
 }
 
 </style>
