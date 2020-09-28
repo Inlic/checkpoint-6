@@ -29,9 +29,6 @@
         </tr>
         </tbody>
       </table>
-    <!-- <div class="card offset-1 col-10 mt-2 border-success see-through" v-for="bug in bugs" :key="bug.id">
-      <h1 class="mt-2"><router-link class="text-dark" :to="{name: 'bug-details', params: {id: bug.id}}">{{bug.title}}</router-link><span class="ml-3">{{bug.creatorEmail}}</span><span class="ml-3 text-warning" v-if="bug.closed">Closed</span><span class="ml-3 text-danger" v-else>Open</span><span class="ml-3">{{new Date(bug.updatedAt).toLocaleDateString('en-US')}}</span></h1>
-    </div> -->
     </div>
   </div>
 </template>
@@ -71,7 +68,5 @@ export default {
 table, th, td{
   border: 1px solid var(--success)
 }
-
-
 
 </style>
