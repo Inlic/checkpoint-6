@@ -11,6 +11,11 @@
             aria-describedby="helpId"
             v-model="noteData.content"
           />
+          <select class="form-control" v-model="noteData.flagged">
+            <option>pending</option>
+            <option>completed</option>
+            <option>rejected</option>
+          </select>
           <button type="submit" class="btn btn-warning">Edit Note</button>
         </form>
       <div class="mt-3">
@@ -26,7 +31,8 @@ export default {
   props: ["noteProp"],
   data(){
     return {
-      noteData: {}
+      noteData: {
+      }
     }
   },
   methods:{

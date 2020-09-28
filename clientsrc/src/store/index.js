@@ -1,7 +1,9 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import router from "../router";
+import SweetALert from "../services/SweetAlert";
 import { api } from "./AxiosService"
+import SweetAlert from "../services/SweetAlert";
 
 Vue.use(Vuex);
 
@@ -86,8 +88,10 @@ export default new Vuex.Store({
     },
     async closeBug({commit},bugId){
       try {
+        if(await SweetAlert.sweetDelete("This Bug will be closed.","Yes, close it!","Are you sure you want to close this bug?")){
         let res = await api.delete('bugs/'+bugId)
         commit("setActiveBug", res.data)
+        }
       } catch (error) {
         console.error(error)
       }
@@ -121,8 +125,10 @@ export default new Vuex.Store({
     },
     async deleteNote({commit},noteId){
       try {
+        if(await SweetAlert.sweetDelete("This Note will be deleted.","Yes, delete it!","This note will be deleted.")){
         await api.delete('notes/'+noteId)
         commit("removeNote",noteId)
+        }
       } catch (error) {
         console.error(error)
       }

@@ -83,7 +83,8 @@ export default {
         //TODO flagged attribute needs to be in the post
         content: this.newNote.content,
         bug: this.$route.params.id,
-        creatorEmail: this.profile.email
+        creatorEmail: this.profile.email,
+        flagged: "pending"
       }
       this.$store.dispatch("createNote",payload)
     }
