@@ -1,12 +1,16 @@
 <template>
 <div class="post-details container-fluid text-center">
     <div class="row">
-      <div class="col-12">
-        <h3 class="text-primary">{{bug.title}}</h3>
+      <div class="col-12 card">
+        <h1 class="text-primary">{{bug.title}}</h1>
         <h6 class="text-warning">Created By: {{bug.creatorEmail}}</h6>
+        <div class="col-12 card-body">
         <p>{{bug.description}}</p>
-        <h1 class="text-info">Bug Closed: {{bug.closed}}</h1>
-        <h1 v-if="bug.closedDate">Closed on: {{new Date(bug.closedDate).toLocaleDateString('en-US')}}</h1>
+        <div class="offset-4 col-4 card">
+        <h2>Bug Status:  <span :class="{'text-warning': bug.closed, 'text-danger': !bug.closed}">{{bug.closed ? "Closed" : "Open"}}</span></h2>
+        <h2 v-if="bug.closedDate">Closed on: {{new Date(bug.closedDate).toLocaleDateString('en-US')}}</h2>
+        </div>
+        </div>
         <div v-if="isCreator && bug.closed == false" class="col-12">
         <i class="fa fa-pencil-alt" aria-hidden="true"></i>
           <form class="form-inline" @submit.prevent="editActiveBug">
@@ -30,9 +34,9 @@
         <div class="col-12 mt-2" v-if="isCreator && bug.closed == false">
         <button class="btn btn-danger"  @click="closeBug">Close Bug</button>
         </div>
-        <div v-if="profile.email" class="col-12">
+        <div v-if="profile.email" class="col-12 card">
         <form class="form-inline" @submit.prevent="createNote">
-          <div class="form-group">
+          <div class="form-group m-2">
             <input
               type="text"
               v-model="newNote.content"
@@ -42,7 +46,7 @@
             />
             <!-- Needs another entry for flagged or maybe a default for flagged attribute -->
           </div>
-          <button type="submit" class="btn btn-success">
+          <button type="submit" class="btn btn-success m-1">
             <i class="fa fa-plus" aria-hidden="true"></i>
           </button>
         </form>

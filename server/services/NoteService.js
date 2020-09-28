@@ -23,7 +23,7 @@ class NoteService {
     return data;
   }
   async edit(id, userEmail, update){
-    let data = await dbContext.Notes.findOneAndUpdate({_id: id, creatorEmail: userEmail},update,{new: true});
+    let data = await dbContext.Notes.findOneAndUpdate({_id: id, creatorEmail: userEmail},update,{new: true, runValidators: true});
     if (!data){
       throw new BadRequest("Invalid ID or you do not own this note")
     }
