@@ -11,8 +11,8 @@
         <div class="col-12 card-body">
         <p>{{bug.description}}</p>
         </div>
-        <div v-if="isCreator && bug.closed == false" class="offset-3 col-6 card p-3">
-        <i class="fa fa-pencil-alt mb-2" aria-hidden="true" @click="editToggle = !editToggle"> Click to Edit Bug Content</i>
+        <div v-if="isCreator && bug.closed == false" class="offset-3 col-6 p-2">
+        <i class="fa fa-pencil-alt mb-1" aria-hidden="true" @click="editToggle = !editToggle"> Click to Edit Bug Content</i>
         <div v-if="editToggle">
           <form class="form-inline" @submit.prevent="editActiveBug">
           <input
@@ -33,7 +33,7 @@
         </form>
         </div>
         </div>
-        <div class="col-12 my-2" v-if="isCreator && bug.closed == false">
+        <div class="col-12 mb-2" v-if="isCreator && bug.closed == false">
         <button class="btn btn-danger"  @click="closeBug">Close Bug</button>
         </div>
         <div v-if="profile.email" class="col-12 card">
@@ -54,7 +54,7 @@
         </form>
         </div>
         <div class="col-12 text-center">
-          <h3 class="text-primary">Notes</h3>
+          <h1 class="text-primary">Notes</h1>
           <ul class="list-group">
             <note-component v-for="note in notes" :key="note.id" :noteProp="note"/>
           </ul>
