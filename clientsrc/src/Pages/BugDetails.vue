@@ -70,7 +70,9 @@ export default {
   name: "bug-details",
   data(){
     return { 
-      bugData: {},
+      bugData: {
+        description: this.$store.state.activebug.description
+      },
       newNote: {},
       editToggle: false 
       };

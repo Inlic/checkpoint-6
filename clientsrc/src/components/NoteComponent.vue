@@ -15,10 +15,10 @@
           <input
             type="text"
             class="form-control col-12"
-            placeholder="Comment Text..."
+            placeholder="Note text..."
             aria-describedby="helpId"
             v-model="noteData.content"
-          />
+          >
           <select class="form-control col-12" v-model="noteData.flagged">
             <option>pending</option>
             <option>completed</option>
@@ -41,7 +41,9 @@ export default {
   props: ["noteProp"],
   data(){
     return {
-      noteData: {},
+      noteData: {
+        content: this.noteProp.content
+      },
       noteToggle: false
     }
   },
@@ -52,6 +54,7 @@ export default {
     editNote(){
       this.noteData.id = this.noteProp.id
       this.$store.dispatch("editActiveNotes", this.noteData);
+      this.noteToggle = false
     }
   },
   computed:{
