@@ -1,18 +1,24 @@
 <template>
   <div class="container-fluid d-flex flex-column justify-content-center">
     <div class="row">
-      <h1 class="card offset-1 col-10 text-dark border-success my-2 pb-1">Reported Bugs</h1>
+      <h1 class="card offset-1 col-10 text-dark border-success my-2 py-3">Reported Bugs &#128030</h1>
     </div>
-    <div class="row">
-      <div v-if="profile.email" class="card offset-1 col-10 mt-2 p-1 border-success">
-      <form class="form-inline" @submit.prevent="addBug">
-        <input class="form-control mx-2" type="text" placeholder="New Bug Title" v-model="newBug.title" required />
-        <input class="form-control mx-2" type="text" placeholder="New Bug Description" v-model="newBug.description" />
-        <button class="btn btn-success" type="submit">Create Bug Report</button>
+    <div class="row mb-2">
+      <div v-if="profile.email" class="card offset-1 col-10 mt-2 py-2 border-success">
+      <form @submit.prevent="addBug">
+        <div class="form-group">
+        <input class="form-control" type="text" placeholder="New Bug Title" v-model="newBug.title" required />
+        </div>
+        <div class="form-group">
+        <textarea class="form-control" placeholder="New Bug Description" v-model="newBug.description" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+        <button class="btn btn-success rounded" type="submit">Create Bug Report</button>
+        </div>
       </form>
       </div>
     </div>
-    <div class="row card-body">
+    <div class="row mt-2">
       <table class="table table-striped offset-lg-1 col-12 col-lg-10">
         <tr>
           <th scope="col">Bug Report Title</th>
@@ -36,22 +42,22 @@
 <script>
 export default {
   name: "home",
-  mounted(){
+  mounted() {
     this.$store.dispatch("getBugs");
   },
   data() {
     return {
       newBug: {
         description: "",
-        title: ""
+        title: "",
       },
       closed: "",
       fillEye: true,
-      sort: false
+      sort: false,
     };
   },
   computed: {
-    profile(){
+    profile() {
       return this.$store.state.profile;
     },
     bugs() {
@@ -59,44 +65,49 @@ export default {
     },
   },
   methods: {
-    addBug(){
+    addBug() {
       this.$store.dispatch("addBug", this.newBug);
-      this.newBug = { title: "", description: ""};
+      this.newBug = { title: "", description: "" };
     },
-    hideClosed(){
-      if(this.closed === ""){
-        this.closed = true
-        this.fillEye = false
-      } else{
-        this.closed = ""
-        this.fillEye = true
+    hideClosed() {
+      if (this.closed === "") {
+        this.closed = true;
+        this.fillEye = false;
+      } else {
+        this.closed = "";
+        this.fillEye = true;
       }
     },
-    dateSort(){
-      if(this.sort === false){
-        this.bugs.sort((a,b) => {
-        let da = new Date(a.updatedAt), db = new Date(b.updatedAt)
-        this.sort = true
-        return da - db;
-      })} else {
-        this.bugs.sort((a,b) => {
-        let da = new Date(a.updatedAt), db = new Date(b.updatedAt)
-        this.sort = false
-        return db - da
-        })
+    dateSort() {
+      if (this.sort === false) {
+        this.bugs.sort((a, b) => {
+          let da = new Date(a.updatedAt),
+            db = new Date(b.updatedAt);
+          this.sort = true;
+          return da - db;
+        });
+      } else {
+        this.bugs.sort((a, b) => {
+          let da = new Date(a.updatedAt),
+            db = new Date(b.updatedAt);
+          this.sort = false;
+          return db - da;
+        });
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style>
-table, th, td{
-  border: 1px solid var(--success)
+table,
+th,
+td {
+  border: 1px solid var(--success);
 }
 
-.fas, .far {
+.fas,
+.far {
   cursor: pointer;
 }
-
 </style>

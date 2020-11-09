@@ -17,10 +17,10 @@
     "dotenv": "^8.1.0",
     "esm": "^3.2.25",
     "express": "^4.17.1",
-    "helmet": "^3.21.2",
-    "mongoose": "^5.8.0",
+    "helmet": "^3.23.3",
+    "mongoose": "^5.10.13",
     "socket.io": "^2.3.0",
-    "sweetalert2": "^10.3.5"
+    "sweetalert2": "^10.9.1"
   },
   "engines": {
     "node": "^12.9.0",

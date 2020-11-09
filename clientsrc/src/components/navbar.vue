@@ -1,7 +1,11 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <router-link class="navbar-brand" :to="{ name: 'Home' }"
-      >Bug Tracker!</router-link
+  <nav
+    class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-success"
+  >
+    <router-link
+      class="navbar-brand p-2 border border-success rounded"
+      :to="{ name: 'Home' }"
+      >Bug Tracker &#128027</router-link
     >
     <button
       class="navbar-toggler"
@@ -33,13 +37,13 @@
       </ul>
       <span class="navbar-text">
         <button
-          class="btn btn-success"
+          class="btn btn-success rounded"
           @click="login"
           v-if="!$auth.isAuthenticated"
         >
           Login
         </button>
-        <button class="btn btn-danger" @click="logout" v-else>logout</button>
+        <button class="btn btn-danger rounded" @click="logout" v-else>logout</button>
       </span>
     </div>
   </nav>
@@ -53,17 +57,18 @@ export default {
   methods: {
     async login() {
       await this.$auth.loginWithPopup();
-      if(this.$auth.isAuthenticated){
+      if (this.$auth.isAuthenticated) {
         this.$store.dispatch("setBearer", this.$auth.bearer);
         this.$store.dispatch("getProfile");
       }
     },
     async logout() {
       this.$store.dispatch("resetBearer");
-      await this.$auth.logout({returnTo: window.location.origin});
-    }
-  }
+      await this.$auth.logout({ returnTo: window.location.origin });
+    },
+  },
 };
 </script>
 
-<style></style>
+<style>
+</style>
