@@ -21,8 +21,8 @@
     </div>
     <div class="row text-center">
       <div class="col-12">
-        <h6 class="text-warning py-2 my-2">
-          Created By: {{ bug.creatorEmail }}
+        <h6 class="py-2 my-2">
+          Created By: <span class="text-warning"> {{ bug.creatorEmail }}</span>
         </h6>
       </div>
       <div class="col-12 offset-md-1 col-md-10 card">
@@ -100,7 +100,7 @@
     </div>
     <div class="row">
       <div class="col-12 text-center mt-2">
-        <ul class="list-group">
+        <ul class="list-group row">
           <note-component
             v-for="note in notes"
             :key="note.id"
