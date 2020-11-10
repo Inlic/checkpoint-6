@@ -22,17 +22,17 @@ export default new Vuex.Store({
       state.profile = profile;
     },
     // Bug Mutations
-    setBugs(state, bugs){
-    state.bugs = bugs;
+    setBugs(state, bugs) {
+      state.bugs = bugs;
     },
-    setActiveBug(state, bug){
+    setActiveBug(state, bug) {
       state.activebug = bug
     },
     //Note Mutations
-    setActiveBugNotes(state, notes){
+    setActiveBugNotes(state, notes) {
       state.activenotes = notes;
     },
-    removeNote(state,id){
+    removeNote(state, id) {
       state.activenotes = state.activenotes.filter(n => n.id != id)
     }
   },
@@ -53,7 +53,7 @@ export default new Vuex.Store({
       }
     },
     // Bug Actions
-    async getBugs({commit}){
+    async getBugs({ commit }) {
       try {
         let res = await api.get('bugs');
         commit("setBugs", res.data)
@@ -61,78 +61,78 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
-    async addBug({commit, state}, bugData){
+    async addBug({ commit, state }, bugData) {
       try {
         let res = await api.post('bugs', bugData)
-        commit("setBugs",[...state.bugs,res.data])
-        router.push({ name: "bug-details", params: {id: res.data._id}})
+        commit("setBugs", [...state.bugs, res.data])
+        router.push({ name: "bug-details", params: { id: res.data._id } })
       } catch (error) {
         console.error(error)
       }
     },
-    async getActiveBug({commit},bugId){
+    async getActiveBug({ commit }, bugId) {
       try {
-        let res = await api.get('bugs/'+bugId)
+        let res = await api.get('bugs/' + bugId)
         commit("setActiveBug", res.data)
       } catch (error) {
         console.error(error)
       }
     },
-    async editActiveBug({commit},bug){
+    async editActiveBug({ commit }, bug) {
       try {
-        let res = await api.put('bugs/'+bug.id, bug)
+        let res = await api.put('bugs/' + bug.id, bug)
         commit("setActiveBug", res.data)
       } catch (error) {
         console.error(error)
       }
     },
-    async closeBug({commit},bugId){
+    async closeBug({ commit }, bugId) {
       try {
-        if(await SweetAlert.sweetDelete("This Bug will be closed.","Yes, close it!","Are you sure you want to close this bug?")){
-        let res = await api.delete('bugs/'+bugId)
-        commit("setActiveBug", res.data)
+        if (await SweetAlert.sweetDelete("This Bug will be closed.", "Yes, close it!", "Are you sure you want to close this bug?")) {
+          let res = await api.delete('bugs/' + bugId)
+          commit("setActiveBug", res.data)
         }
       } catch (error) {
         console.error(error)
       }
     },
     // Note Actions
-    async getActiveBugNotes({commit},bugId){
+    async getActiveBugNotes({ commit }, bugId) {
       try {
-        let res = await api.get('bugs/'+bugId+'/notes')
-        commit("setActiveBugNotes",res.data)
+        let res = await api.get('bugs/' + bugId + '/notes')
+        commit("setActiveBugNotes", res.data)
       } catch (error) {
         console.error(error)
       }
     },
-    async createNote({commit, state},note){
-      try{
-        let res = await api.post('notes',note)
-        commit("setActiveBugNotes",[...state.activenotes,res.data])
-      } catch(error){
+    async createNote({ commit, state }, note) {
+      try {
+        let res = await api.post('notes', note)
+        commit("setActiveBugNotes", [...state.activenotes, res.data])
+      } catch (error) {
         console.error(error)
       }
     },
-    async editActiveNotes({commit, state}, note){
+    async editActiveNotes({ commit, state }, note) {
       try {
-        let res = await api.put('notes/'+note.id, note)
+        let res = await api.put('notes/' + note.id, note)
         let noteIndex = state.activenotes.findIndex(n => n.id == note.id)
-        state.activenotes.splice(noteIndex,1,res.data)
+        state.activenotes.splice(noteIndex, 1, res.data)
         commit("setActiveBugNotes", state.activenotes)
       } catch (error) {
         console.error(error)
       }
     },
-    async deleteNote({commit},noteId){
+    async deleteNote({ commit }, noteId) {
       try {
-        if(await SweetAlert.sweetDelete("This Note will be deleted.","Yes, delete it!","This note will be deleted.")){
-        await api.delete('notes/'+noteId)
-        commit("removeNote",noteId)
+        if (await SweetAlert.sweetDelete("This Note will be deleted.", "Yes, delete it!", "This deletion is permanent.")) {
+          await api.delete('notes/' + noteId)
+          commit("removeNote", noteId)
         }
       } catch (error) {
         console.error(error)
       }
     }
-    
+
   }
 });

@@ -40,6 +40,7 @@
               class="form-control col-12 rounded-bottom"
               v-model="noteData.flagged"
             >
+              <option value="" disabled selected>Select Note Status</option>
               <option>pending</option>
               <option>completed</option>
               <option>rejected</option>
