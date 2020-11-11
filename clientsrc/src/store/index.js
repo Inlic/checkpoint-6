@@ -1,7 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import router from "../router";
-import SweetALert from "../services/SweetAlert";
 import { api } from "./AxiosService"
 import SweetAlert from "../services/SweetAlert";
 
