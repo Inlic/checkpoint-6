@@ -11,7 +11,15 @@ Once a bug was closed, no further editing should be allowed.
 
 <hr>
 
-### Home View:
+# Actual Application Front Page
+
+<div>
+  <img class="img-responsive" style="border: 1px solid black;padding: 10px" src="bug-log-front-page.png" />
+</div>
+
+<hr>
+
+### Suggested Home View:
 
 <div>
   <img class="img-responsive" style="border: 1px solid black;padding: 10px" src="HomeView.jpg" />
@@ -30,7 +38,7 @@ Try to implement pagination here(display limited number of bugs per page). Modal
 
 <hr>
 
-### Details View:
+### Suggested Details View:
 
 <div>
   <img class="img-responsive"  style="border: 1px solid black;padding: 10px"  src="BugDetailsView.jpg" />
