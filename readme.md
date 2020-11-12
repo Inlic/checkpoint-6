@@ -11,7 +11,7 @@ Once a bug was closed, no further editing should be allowed.
 
 <hr>
 
-# Actual Application Front Page
+# Final Application Front Page
 
 <div>
   <img class="img-responsive" style="border: 1px solid black;padding: 10px" src="bug-log-front-page.png" />
