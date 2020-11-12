@@ -8,10 +8,6 @@ export class NotesController extends BaseController {
     super("api/notes");
     this.router
       .use(auth0provider.getAuthorizedUserInfo)
-      // NOTE  Debugging paths only
-      // .get("", this.getAll)
-      // .get("/:id", this.getById)
-      // NOTE regular paths
       .post("", this.create)
       .put("/:id", this.edit)
       .delete("/:id", this.delete)
