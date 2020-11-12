@@ -160,3 +160,9 @@ Delete
 - Modals for creating Notes
 - Use sweet alert for prompts
   - Implemented in this application.
+
+### UML Diagram
+
+<div>
+  <img class="img-responsive"  style="border: 1px solid black;padding: 10px"  src="UML-BugLog.png" />
+</div>
