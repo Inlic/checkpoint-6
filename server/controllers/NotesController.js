@@ -17,26 +17,6 @@ export class NotesController extends BaseController {
       .delete("/:id", this.delete)
   }
 
-  // async getAll(req,res,next){
-  //   try {
-  //     // NOTE user email not necessary for debugging?
-  //     let data = await noteService.getAll(req.userInfo.email);
-  //     return res.send(data)
-  //   } catch (error) {
-  //     next(error)
-  //   }
-  // }
-
-  // async getById(req,res,next){
-  //   try {
-  //     // NOTE user email not necessary for debugging?
-  //     let data = await noteService.getById(req.params.id, req.userInfo.email)
-  //     return res.send(data);
-  //   } catch (error) {
-  //     next(error)
-  //   }
-  // }
-
   async create(req, res, next) {
     try {
       req.body.creatorEmail = req.userInfo.email;
