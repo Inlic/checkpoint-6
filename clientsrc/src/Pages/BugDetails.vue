@@ -22,7 +22,8 @@
     <div class="row text-center">
       <div class="col-12">
         <h6 class="py-2 my-2">
-          Created By: <span class="text-warning"> {{ bug.creatorEmail }}</span>
+          Created By:
+          <span class="text-warning"> {{ bug.creatorEmail }}</span>
         </h6>
       </div>
       <div class="col-12 offset-md-1 col-md-10 card">
@@ -119,8 +120,8 @@ export default {
   data() {
     return {
       bugData: {
-        title: this.$store.state.activebug.title,
-        description: this.$store.state.activebug.description,
+        title: this.$route.query.title,
+        description: this.$route.query.description,
       },
       newNote: {},
       editToggle: false,
@@ -153,9 +154,6 @@ export default {
     },
   },
   computed: {
-    bugs() {
-      return this.$store.state.bugs;
-    },
     bug() {
       return this.$store.state.activebug;
     },

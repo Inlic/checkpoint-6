@@ -27,8 +27,8 @@
           <th scope="col" class="text-center">Last Modified Date <i class="fas fa-sort" @click="dateSort"></i></th>
         </tr>
         <tbody>
-        <tr v-for="bug in bugs" :key="bug.id" v-show="bug.closed !== closed">
-          <td><h4><router-link class="text-primary" :to="{name: 'bug-details', params: {id: bug.id}}">{{bug.title}}</router-link></h4></td>
+        <tr v-for="bug in bugs" :key="bug.id"  v-show="bug.closed !== closed">
+          <td><h4><router-link class="text-primary" :to="{name: 'bug-details', params: {id: bug.id}, query: {title: bug.title, description: bug.description}}">{{bug.title}}</router-link></h4></td>
           <td><h5>{{bug.creatorEmail}}</h5></td>
           <td class="text-center"><h5><span class="text-warning" v-if="bug.closed">Closed</span><span class="text-danger" v-else>Open</span></h5></td>
           <td class="text-center"><h5>{{new Date(bug.updatedAt).toLocaleDateString('en-US')}}</h5></td>
